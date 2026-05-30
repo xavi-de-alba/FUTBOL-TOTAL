@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fútbol Total - El Mundo del Balompié</title>
+
+  <!-- Bootstrap 5.3.3 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <!-- Estilos Personalizados -->
+  <style>
+    body {
+      background-color: rgb(32, 32, 32);
+      color: rgb(255, 255, 255);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    .navbar-brand img {
+      filter: drop-shadow(0px 0px 4px rgba(255, 255, 255, 0.3));
+    }
+    
+    section {
+      padding: 60px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .card {
+      background-color: rgb(45, 45, 45);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: white;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    }
+
+    .accordion-button {
+      background-color: #0d6efd;
+      color: white;
+    }
+
+    .accordion-button:not(.collapsed) {
+      background-color: #0b5ed7;
+      color: white;
+    }
+    
+    .gallery-img {
+      object-fit: cover;
+      height: 250px;
+      width: 100%;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+    
+    .gallery-img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Estilos para la simulación del Campo de Juego - 11 Ideal */
+    .campo-futbol {
+      background-color: #2e7d32;
+      border: 4px solid white;
+      border-radius: 8px;
+      padding: 20px;
+      position: relative;
+    }
+    
+    .posicion-linea {
+      background: rgba(255, 255, 255, 0.1);
+      border: 2px dashed rgba(255, 255, 255, 0.4);
+      border-radius: 5px;
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+
+    .badge-jugador {
+      background-color: #1b5e20;
+      border: 1px solid white;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. CONTROL: NAVBAR -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow-sm">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="#inicio">
+        <img src="https://static.vecteezy.com/system/resources/thumbnails/021/099/443/small_2x/ft-logo-monogram-with-up-to-down-style-negative-space-design-template-vector.jpg" alt="FT Logo" width="50" class="rounded me-2">
+        <span class="fw-bold text-success">FÚTBOL TOTAL</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item"><a class="nav-link active" href="#inicio">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="#quienes-somos">Quiénes Somos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#productos-servicios">Productos / Equipos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#jugadores">Agencia Jugadores</a></li>
+          <li class="nav-item"><a class="nav-link" href="#once-ideal">11 Ideal</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria-fotos">Galería Fotos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#galeria-videos">Galería Vídeos</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        </ul>
+        <form class="d-flex ms-lg-3" role="search" onsubmit="event.preventDefault(); alert('Buscando contenido de fútbol...');">
+          <input class="form-control me-2" type="search" placeholder="Buscar equipo..." aria-label="Search">
+          <!-- CONTROL: BUTTONS -->
+          <button class="btn btn-outline-success" type="submit">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 2. SECCIÓN: INICIO (CON CONTROL: CARRUSEL) -->
+  <section id="inicio" class="p-0">
+    <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="4000">
+          <img src="https://th.bing.com/th/id/R.d290289a3b8c8b8bbfabfa53ae47597f?rik=ZkLZPT6cU1yxbw&pid=ImgRaw&r=0" class="d-block w-100" alt="Estadio" style="height: 550px; object-fit: cover; filter: brightness(60%);">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h1 class="display-4 fw-bold">Bienvenidos a Fútbol Total</h1>
+            <p class="lead">La plataforma definitiva para vivir la pasión por el deporte rey.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="4000">
+          <img src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?q=80&width=1920&auto=format&fit=crop" class="d-block w-100" alt="Balón" style="height: 550px; object-fit: cover; filter: brightness(60%);">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h2 class="display-5 fw-bold">Análisis de Ligas Mundiales</h2>
+            <p class="lead">Explora estadísticas de equipos de Europa, América, Asia y más.</p>
+          </div>
+        </div>
+        <div class="carousel-item" data-bs-interval="4000">
+          <img src="https://tse3.mm.bing.net/th/id/OIP.KARCqm6gbDSy635vwO9EvAHaFj?rs=1&pid=ImgDetMain&o=7&rm=3" class="d-block w-100" alt="Jugadores" style="height: 550px; object-fit: cover; filter: brightness(60%);">
+          <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+            <h2 class="display-5 fw-bold">El 11 Ideal de la Temporada</h2>
+            <p class="lead">Conoce las estrellas que dominan los terrenos de juego del mundo.</p>
+          </div>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- 3. SECCIÓN: QUIÉNES SOMOS (CON CONTROL: COLLAPSE) -->
+  <section id="quienes-somos" class="container text-center py-5">
+    <div class="row align-items-center">
+      <div class="col-md-5 mb-4 mb-md-0">
+        <!-- CONTROL: IMAGENES -->
+        <img src="https://tse4.mm.bing.net/th/id/OIP.BIqPDh1rVY_9gJxvh5FWUAHaE8?rs=1&pid=ImgDetMain&o=7&rm=3" class="img-fluid rounded shadow-lg border border-secondary" alt="Comunidad Fútbol">
+      </div>
+      <div class="col-md-7 text-start">
+        <h2 class="text-success fw-bold mb-3 text-start">¿Quiénes Somos?</h2>
+        <p class="fs-5">
+          Somos una página web integral en donde te presentaremos todo lo relacionado con el universo del fútbol, sin ninguna excepción, para informarte y contagiarte de la emoción de este hermoso deporte. ¡Únete a nuestra pasión y sé parte del juego!
+        </p>
+        
+        <!-- CONTROL: COLLAPSE -->
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseQuienesSomos" aria-expanded="false" aria-controls="collapseQuienesSomos">
+          Ver más sobre nuestra visión
+        </button>
+        
+        <div class="collapse mt-3" id="collapseQuienesSomos">
+          <div class="card card-body text-white">
+            <p class="mb-2">Actualmente estamos en una fase de expansión y progreso continuo, optimizando día a día nuestras herramientas digitales de análisis deportivo y cobertura comunitaria.</p>
+            <p class="small text-muted mb-0">Fuentes externas asociadas: Redes deportivas globales y portales especializados en la innovación comunitaria del deporte rey.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. SECCIÓN: SERVICIOS / PRODUCTOS OFRECIDOS (CON CONTROL: CARD Y COLLAPSE) -->
+  <section id="productos-servicios" class="bg-dark py-5">
+    <div class="container text-center">
+      <h2 class="text-success fw-bold mb-2">Servicios y Cobertura de Equipos</h2>
+      <p class="text-muted mb-5">Explora las regiones geográficas que cubrimos mediante nuestro catálogo de consultoría técnica deportiva.</p>
+      
+      <div class="row g-4">
+        <!-- Tarjeta 1 -->
+        <div class="col-md-4">
+          <!-- CONTROL: CARD -->
+          <div class="card h-100">
+            <img src="https://s.yimg.com/ny/api/res/1.2/gAzfw0hG_xddq1VAPSa6DQ--/YXBwaWQ9aGlnaGxhbmRlcjt3PTk2MDtoPTU0MDtjZj13ZWJw/https://media.zenfs.com/en/evening_standard_239/63c2e660ebc85623c651b59a786476c5" class="card-img-top" alt="Fútbol Europa" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title text-success">Europa</h5>
+                <p class="card-text">Asesoría de fichajes, estadísticas analíticas y seguimiento en vivo de clubes de la UEFA Champions League.</p>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-success btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#infoEuropa">Detalles Certificado</button>
+                <div class="collapse mt-2" id="infoEuropa">
+                  <div class="p-2 bg-secondary rounded small">
+                    Estamos patrocinados por varias empresas líderes del deporte que nos brindan un gran certificado de aval internacional.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Tarjeta 2 -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1518063319789-7217e6706b04?q=80&width=500&auto=format&fit=crop" class="card-img-top" alt="Fútbol América" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title text-success">América</h5>
+                <p class="card-text">Gestión estratégica y bases de datos para ligas de CONMEBOL y CONCACAF, destacando el talento emergente.</p>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-success btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#infoAmerica">Detalles Certificado</button>
+                <div class="collapse mt-2" id="infoAmerica">
+                  <div class="p-2 bg-secondary rounded small">
+                    Convenios activos con academias de fútbol base de alto rendimiento en todo el continente americano.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tarjeta 3 -->
+        <div class="col-md-4">
+          <div class="card h-100">
+            <img src="https://images.unsplash.com/photo-1543326727-cf6c39e8f84c?q=80&width=500&auto=format&fit=crop" class="card-img-top" alt="Fútbol Asia" style="height: 200px; object-fit: cover;">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <div>
+                <h5 class="card-title text-success">Asia & Resto del Mundo</h5>
+                <p class="card-text">Consultoría sobre mercados emergentes y ligas en pleno crecimiento dentro de la AFC y confederaciones aliadas.</p>
+              </div>
+              <div class="mt-3">
+                <button class="btn btn-success btn-sm w-100" type="button" data-bs-toggle="collapse" data-bs-target="#infoAsia">Detalles Certificado</button>
+                <div class="collapse mt-2" id="infoAsia">
+                  <div class="p-2 bg-secondary rounded small">
+                    Alianzas tecnológicas y de scouting digital con representantes de fútbol del continente asiático.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. SECCIÓN: AGENCIA DE JUGADORES (CON CONTROL: ACCORDION) -->
+  <section id="jugadores" class="container py-5">
+    <div class="text-center mb-5">
+      <h2 class="text-success fw-bold">Nuestra Agencia de Jugadores</h2>
+      <p class="text-muted">Despliega las categorías para conocer las estrellas de fútbol representadas y organizadas por continente.</p>
+    </div>
+
+    <!-- CONTROL: ACCORDION -->
+    <div class="accordion mx-auto shadow" id="accordionJugadores" style="max-width: 800px;">
+      
+      <!-- Item 1 -->
+      <div class="accordion-item bg-dark text-white border-secondary">
+        <h2 class="accordion-header" id="headingOne">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+            Cracks de Europa
+          </button>
+        </h2>
+        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionJugadores">
+          <div class="accordion-body">
+            <p>Representamos y gestionamos los perfiles mediáticos de las figuras del viejo continente. Incluye seguimiento de rendimiento en ligas como la Premier League y LaLiga.</p>
+            <ul>
+              <li>Erling Haaland (Goleador letal)</li>
+              <li>Kevin De Bruyne (Cerebro táctico)</li>
+              <li>Kylian Mbappé (Velocidad pura)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 2 -->
+      <div class="accordion-item bg-dark text-white border-secondary">
+        <h2 class="accordion-header" id="headingTwo">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+            Estrellas de América
+          </button>
+        </h2>
+        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionJugadores">
+          <div class="accordion-body">
+            <p>La magia y gambeta sudamericana bajo nuestro sello de representación y visibilidad de scout.</p>
+            <ul>
+              <li>Lionel Messi (Leyenda viviente)</li>
+              <li>Vinicius Jr (Desborde y desequilibrio)</li>
+              <li>Luis Díaz (Energía y potencia extrema)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Item 3 -->
+      <div class="accordion-item bg-dark text-white border-secondary">
+        <h2 class="accordion-header" id="headingThree">
+          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+            Talentos de Asia y África
+          </button>
+        </h2>
+        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionJugadores">
+          <div class="accordion-body">
+            <p>Jugadores con disciplina física intachable y rendimiento constante en los nuevos mercados millonarios del fútbol.</p>
+            <ul>
+              <li>Heung-min Son (Precisión y liderazgo)</li>
+              <li>Mohamed Salah (Fuerza y consistencia goleadora)</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. SECCIÓN: 11 IDEAL (DISEÑO INTEGRAL E INTERACTIVO) -->
+  <section id="once-ideal" class="bg-dark py-5">
+    <div class="container text-center">
+      <h2 class="text-success fw-bold mb-3">El 11 Ideal Mundial</h2>
+      <p class="text-muted mb-4">La alineación élite definitiva configurada tácticamente por el equipo analista de Fútbol Total.</p>
+      
+      <div class="campo-futbol mx-auto text-white shadow-lg" style="max-width: 650px;">
+        <!-- Delanteros -->
+        <div class="posicion-linea">
+          <h6 class="text-warning text-uppercase small">Ataque</h6>
+          <span class="badge badge-jugador m-1 p-2">Messi</span>
+          <span class="badge badge-jugador m-1 p-2">Haaland</span>
+          <span class="badge badge-jugador m-1 p-2">Vinicius Jr</span>
+        </div>
+        
+        <!-- Mediocampo -->
+        <div class="posicion-linea">
+          <h6 class="text-warning text-uppercase small">Mediocampo</h6>
+          <span class="badge badge-jugador m-1 p-2">Modric</span>
+          <span class="badge badge-jugador m-1 p-2">De Bruyne</span>
+          <span class="badge badge-jugador m-1 p-2">Pedri</span>
+        </div>
+
+        <!-- Defensas -->
+        <div class="posicion-linea">
+          <h6 class="text-warning text-uppercase small">Defensa</h6>
+          <span class="badge badge-jugador m-1 p-2">Cucurella</span>
+          <span class="badge badge-jugador m-1 p-2">Van Dijk</span>
+          <span class="badge badge-jugador m-1 p-2">Rudiger</span>
+          <span class="badge badge-jugador m-1 p-2">Rúben Dias</span>
+        </div>
+
+        <!-- Portero -->
+        <div class="p-2 border border-white rounded bg-success bg-opacity-50 mx-auto" style="width: 150px;">
+          <h6 class="text-warning text-uppercase small" style="font-size: 0.75rem;">Portero</h6>
+          <span class="badge bg-danger p-2">Courtois</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. SECCIÓN: GALERÍA FOTOGRÁFICA (CON CONTROL: IMAGENES DE BOOTSTRAP) -->
+  <section id="galeria-fotos" class="container py-5 text-center">
+    <h2 class="text-success fw-bold mb-2">Galería Fotográfica</h2>
+    <p class="text-muted mb-4">Postales e imágenes destacadas de torneos internacionales y copas mundiales.</p>
+    
+    <div class="row g-3">
+      <div class="col-6 col-md-4">
+        <img src="https://periodicocorreo.com.mx/__export/sites/correo/img/2023/05/17/copa-del-mundo-2026-213806497.jpg" class="img-fluid rounded gallery-img img-thumbnail bg-dark border-secondary" alt="Mundial 2026">
+      </div>
+      <div class="col-6 col-md-4">
+        <img src="https://th.bing.com/th/id/R.8c20ad1c4944b82c0cdf24a2e7b111bf?rik=RvOdvexSnm5DRQ&riu=http%3a%2f%2fgangatimes.com%2fwp-content%2fuploads%2f2022%2f09%2fPicsart_22-09-21_21-12-54-645-1024x576.jpg&ehk=AJpSxm5AbD0GTb7ItEj7vuN86LLGbC0GrXL0GyOEXNc%3d&risl=&pid=ImgRaw&r=0" class="img-fluid rounded gallery-img img-thumbnail bg-dark border-secondary" alt="Estadio Luz">
+      </div>
+      <div class="col-6 col-md-4">
+        <img src="https://th.bing.com/th/id/R.40e7316592a2cc1ca5861a5375fb7d38?rik=Bq2nI0h5insQYA&pid=ImgRaw&r=0" class="img-fluid rounded gallery-img img-thumbnail bg-dark border-secondary" alt="Entrenamiento">
+      </div>
+      <div class="col-6 col-md-4">
+        <img src="https://diariodelhuila.com/wp-content/uploads/foto-3-enero-20.jpg" class="img-fluid rounded gallery-img img-thumbnail bg-dark border-secondary" alt="Balón de Fútbol">
+      </div>
+      <div class="col-6 col-md-4">
+        <img src="https://images.unsplash.com/photo-1522778119026-d647f0596c20?q=80&width=500&auto=format&fit=crop" class="img-fluid rounded gallery-img img-thumbnail bg-dark border-secondary" alt="Hinchada">
+      </div>
+      <div class="col-6 col-md-4">
+        <img src="https://tse3.mm.bing.net/th/id/OIP.zRTpto_YofM_Zyp-lXS-lQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3" class="img-fluid rounded gallery-img img-thumbnail bg-dark border-secondary" alt="Césped">
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. SECCIÓN: GALERÍA DE VÍDEOS (RESPONSIVA MEDIANTE RATIO DE BOOTSTRAP) -->
+  <section id="galeria-videos" class="bg-dark py-5">
+    <div class="container text-center">
+      <h2 class="text-success fw-bold mb-2">Galería de Vídeos</h2>
+      <p class="text-muted mb-4">Disfruta de partidos, resúmenes y jugadas del mundo del fútbol en streaming fluido.</p>
+      
+      <div class="row g-4 justify-content-center">
+        <div class="col-lg-5 col-md-6">
+          <h5 class="text-white mb-2">Transmisión 1 - Enlaces Recomendados</h5>
+          <!-- CONTROL DE BOOTSTRAP: RATIO 16X9 -->
+          <div class="ratio ratio-16x9 shadow border border-secondary rounded overflow-hidden mb-3">
+            <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video de Fútbol destacado" allowfullscreen></iframe>
+          </div>
+          <div class="p-2 bg-black bg-opacity-20 rounded">
+            <span class="small text-muted">Plataformas externas sugeridas: </span>
+            <a href="https://pelotalibre-tv.com/" target="_blank" class="badge bg-primary text-decoration-none">PelotaLibre TV</a>
+            <a href="https://pirlotv3.pl/index2.php" target="_blank" class="badge bg-secondary text-decoration-none">Pirlo TV</a>
+          </div>
+        </div>
+        
+        <div class="col-lg-5 col-md-6">
+          <h5 class="text-white mb-2">Análisis Técnico y Jugadas de Élite</h5>
+          <div class="ratio ratio-16x9 shadow border border-secondary rounded overflow-hidden mb-3">
+            <iframe src="https://www.youtube.com/embed/3U_yV8Vv4-I" title="Análisis táctico de jugadas" allowfullscreen></iframe>
+          </div>
+          <div class="p-2 bg-black bg-opacity-20 rounded">
+            <p class="small text-muted mb-0">Videos actualizados semanalmente con resúmenes de las mejores jugadas de cada jornada.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. SECCIÓN: CONTACTO, REDES (LIST GROUP), FORMS CONTROL Y MAPA -->
+  <section id="contacto" class="container py-5">
+    <div class="row g-5">
+      <!-- Formulario de Contacto -->
+      <div class="col-md-6">
+        <h2 class="text-success fw-bold mb-3">Formulario de Contacto</h2>
+        <p class="text-muted">Déjanos tus datos y consultas técnicas sobre nuestra cobertura.</p>
+        
+        <form onsubmit="event.preventDefault(); alert('¡Formulario enviado con éxito!');">
+          <!-- CONTROL: FORMS CONTROL -->
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Tu Nombre Completo" required>
+          </div>
+          <div class="mb-3">
+            <input type="email" class="form-control" placeholder="Tu Correo Electrónico" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" rows="4" placeholder="Escribe tu mensaje o sugerencia de fútbol aquí..." required></textarea>
+          </div>
+          <button class="btn btn-primary px-4 py-2" type="submit">Enviar Mensaje</button>
+        </form>
+        
+        <!-- CONTROL: LIST GROUP (Reemplazando listas simples anteriores) -->
+        <div class="mt-4">
+          <h5 class="text-white mb-3">Nuestras Redes Oficiales</h5>
+          <ul class="list-group list-group-flush border border-secondary rounded">
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <span><strong>Correo:</strong> futbol-total@gmail.com</span>
+              <a href="mailto:futbol-total@gmail.com" class="btn btn-sm btn-outline-success">Enviar Mail</a>
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <span><strong>Instagram:</strong> @futbol_total</span>
+              <span class="badge bg-success rounded-pill">Oficial</span>
+            </li>
+            <li class="list-group-item bg-dark text-white d-flex justify-content-between align-items-center">
+              <span><strong>TikTok:</strong> @futbol_total_videos</span>
+              <span class="badge bg-info rounded-pill">Tendencia</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Mapa Integrado -->
+      <div class="col-md-6 text-center">
+        <h2 class="text-success fw-bold mb-3">Nuestra Ubicación</h2>
+        <p class="text-muted">Encuentra nuestras oficinas centrales de redacción y análisis técnico.</p>
+        
+        <!-- MAPA REQUERIDO -->
+        <div class="border border-secondary rounded shadow-sm overflow-hidden mb-3">
+          <iframe 
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126450.27435105268!2d-74.15317585002014!3d4.648283713009591!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e3f9a7d2e35f555%3A0x78a48bf534c5a939!2sBogot%C3%A1%2C%20Colombia!5e0!3m2!1ses!2sco!4v1700000000000!5m2!1ses!2sco" 
+            width="100%" 
+            height="320" 
+            style="border:0;" 
+            allowfullscreen="" 
+            loading="lazy" 
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PIE DE PÁGINA -->
+  <footer class="bg-dark text-center py-4 border-top border-secondary">
+    <div class="container">
+      <p class="mb-0 text-muted">&copy; 2026 Fútbol Total. Todos los derechos reservados. Desarrollado íntegramente con Bootstrap 5.</p>
+    </div>
+  </footer>
+
+  <!-- BOTÓN DE CONTACTO POR WHATSAPP INTEGRADO FLOTANTE -->
+  <a href="https://wa.me/573001112233" 
+     class="btn btn-success position-fixed bottom-0 end-0 m-4 rounded-circle shadow-lg d-flex align-items-center justify-content-center" 
+     style="z-index: 2500; width: 60px; height: 60px;" 
+     target="_blank" 
+     title="Contáctanos por WhatsApp">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="32" height="32">
+  </a>
+
+  <!-- Bootstrap 5.3.3 JavaScript Bundle con Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
